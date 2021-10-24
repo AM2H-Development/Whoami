@@ -1,0 +1,17 @@
+version: "3.9"
+
+networks:
+  net:
+    driver: bridge
+
+services:
+  whoami:
+    image: "traefik/whoami"
+    container_name: "whoami"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.whoami.rule=Host(`whoami.qxf.de`)"
+      - "traefik.http.routers.traefik.entrypoints=websecure"
+      - "traefik.http.routers.traefik.tls.certresolver=myresolver"
+    networks:
+      - net
