@@ -2,12 +2,15 @@ version: "3.9"
 
 networks:
   net:
-    driver: bridge
+    external:
+      name: traefik_net
 
 services:
   whoami:
     image: "traefik/whoami"
     container_name: "whoami"
+    networks:
+      - net
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.whoami.rule=Host(`whoami.qxf.de`)"
