@@ -3,8 +3,7 @@ name: ${PROJECT}
 services:
   whoami:
     image: "traefik/whoami"
-    networks:
-      - net
+    restart: always
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.influxdb.rule=Host(`${HOST}`)"
